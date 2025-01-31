@@ -21,7 +21,7 @@ pipeline {
         stage('Run Python Script') {
             agent { label 'built-in' }
             steps {
-                sh 'python script.py'  // Using 'python' instead of 'python3'
+                sh 'python3 script.py'  // Using 'python' instead of 'python3'
             }
         }
 
