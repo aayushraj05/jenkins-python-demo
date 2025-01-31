@@ -3,14 +3,14 @@ pipeline {
 
     stages {
         stage('Checkout Code') {
-            agent { label 'master' }  // Runs on master agent
+            agent { label 'built-in' }  // Runs on the main Jenkins agent (default)
             steps {
                 git branch: 'main', url: 'https://github.com/aayushraj05/jenkins-python-demo'
             }
         }
 
         stage('Create Python File') {
-            agent { label 'master' }
+            agent { label 'built-in' }  // Runs on the main Jenkins agent
             steps {
                 sh '''
                 echo "print('Hello from Jenkins!')" > script.py
@@ -19,14 +19,14 @@ pipeline {
         }
 
         stage('Run Python Script') {
-            agent { label 'master' }
+            agent { label 'built-in' }  // Runs on the main Jenkins agent
             steps {
                 sh 'python3 script.py'
             }
         }
 
         stage('Clean Workspace') {
-            agent { label 'master' }
+            agent { label 'built-in' }  // Runs on the main Jenkins agent
             steps {
                 sh 'rm -f script.py'
             }
@@ -42,3 +42,4 @@ pipeline {
         }
     }
 }
+
